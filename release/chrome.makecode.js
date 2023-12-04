@@ -380,7 +380,7 @@ var translation = {
     "Go back": "Go back",
     "Go back to create a new project": "Go back to create a new project",
     "Go back to live editor": "Go back to live editor",
-    "Go to Definition": "Go to Definition",
+    "Go to Definition": "Đi tới định nghĩa hàm",
     "Go to GitHub": "Go to GitHub",
     "Go to error": "Go to error",
     "Go to step {0} of {1}": "Go to step {0} of {1}",
