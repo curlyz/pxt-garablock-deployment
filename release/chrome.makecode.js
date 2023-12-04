@@ -1274,7 +1274,7 @@ var translation = {
     "{id:op}tan": "tan",
     "{id:op}truncate": "rút gọn",
     "{id:op}\u00d7": "\u00d7",
-    "{id:repeat}do": "",
+    "{id:repeat}do": "{id:repeat}",
     "{id:snippets}list": "{id:snippets}danh sách",
     "{id:var}index": "{id:var}vị trí",
     "{id:var}item": "{id:var}phần tử",
