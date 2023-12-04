@@ -1267,7 +1267,7 @@ var translation = {
     "{id:op}or": "hoặc",
     "{id:op}round": "làm trong",
     "{id:op}sin": "sin",
-    "{id:op}square root" "căn bậc",
+    "{id:op}square root": "căn bậc",
     "{id:op}tan": "tan",
     "{id:op}truncate": "rút gọn",
     "{id:op}\u00d7": "{id:op}\u00d7",
