@@ -1128,7 +1128,7 @@ var translation = {
     "myAnim": "myAnim",
     "myImage": "myImage",
     "myTile": "myTile",
-    "not %1": "not %1",
+    "not %1": "ngược %1",
     "not changed": "not changed",
     "now": "now",
     "num": "num",
