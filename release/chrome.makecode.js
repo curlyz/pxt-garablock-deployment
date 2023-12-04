@@ -1222,7 +1222,7 @@ var translation = {
     "{id:boolean}false": "sai",
     "{id:boolean}true": "đúng",
     "{id:category}Advanced": "Nâng cao",
-    "{id:category}Arrays": "{id:category}Danh sách",
+    "{id:category}Arrays": "Danh sách",
     "{id:category}Basic": "{id:category}Cơ bản",
     "{id:category}Extensions": "{id:category}Mở rộng",
     "{id:category}Functions": "{id:category}Hàm",
