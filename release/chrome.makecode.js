@@ -1323,9 +1323,11 @@ var translation = {
     "{id:group}Tilemap Operations": "{id:group}Tilemap Operations",
     "{id:group}Tilemaps": "{id:group}Tilemaps",
     "remainder of %1 / %2": "số dư khi %1 / %2",
+    "%1 of %2 and %3": "%1 của %2 và %3",
     "pick random %1 to %2": "ngẫu nhiên số giữa %1 và %2",
     "contrain %1 between %2 and %3": "giới hạn %1 giữa %2 và %3",
     "map %1 from low %2 high %3 to low %4 high %5": "chuyển %1 từ khoảng (%2 đến %3) sang khoảng (%4 đến %5)",
+    "forever": "lặp lại",
 }
 window.translation = translation
 
