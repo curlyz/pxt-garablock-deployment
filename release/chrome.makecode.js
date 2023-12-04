@@ -1574,7 +1574,7 @@ window.garatool = {
 }
 
 
-window.actionShareableLink = async () => {
+window.__link_handle_share_project__ = async () => {
     setTimeout(async () => {
         console.log('Usercode: GENERATE')
         let dom = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
@@ -1584,7 +1584,7 @@ window.actionShareableLink = async () => {
             props: await window.getWorkspaceProps(),
             sketchId: await window.sketchId(),
             mainBlockId: await window.getMainBlockId(),
-            // teachable: await window.getTeachableDatabase()
+            // teachable: await window.getTeachableDatabase(),
         })
 
 
