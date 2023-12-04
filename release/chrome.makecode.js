@@ -1324,7 +1324,7 @@ var translation = {
     "{id:group}Tilemaps": "{id:group}Tilemaps",
 }
 window.translation = translation
-pxt.Util.setLocalizedStrings(translation)
+// pxt.Util.setLocalizedStrings(translation)
 
 
 // intercept util.lf
