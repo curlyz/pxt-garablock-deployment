@@ -1335,17 +1335,17 @@ pxt.Util.setLocalizedStrings(translation)
 var _util_lf = pxt.Util.lf
 window.absent_translation = {}
 
-pxt.Util.lf = (sentence) => {
-    // console.log('util.lf', sentence)
-    if (sentence in translation) {
-        return translation[sentence]
-    }
-    else {
-        window.absent_translation[sentence] = true
-        return _util_lf(sentence)
-    }
-    // return _util_lf(sentence)
-}
+// pxt.Util.lf = (sentence) => {
+//     // console.log('util.lf', sentence)
+//     if (sentence in translation) {
+//         return translation[sentence]
+//     }
+//     else {
+//         window.absent_translation[sentence] = true
+//         return _util_lf(sentence)
+//     }
+//     // return _util_lf(sentence)
+// }
 
 
 setTimeout(async () => {
