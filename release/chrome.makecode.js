@@ -195,7 +195,7 @@ var translation = {
     "Create 'call {0}'": "Tạo khối 'gọi hàm {0}'",
     "Create 'get %1'": "Create 'get %1'",
     "Create 'get {0}'": "Create 'get {0}'",
-    "Create 'set %1'": "Create 'set %1'",
+    "Create 'set %1'": "Tạo khối 'đặt giá trị của %1'",
     "Create GitHub repository": "Create GitHub repository",
     "Create New Asset": "Create New Asset",
     "Create a Project {0}": "Create a Project {0}",
