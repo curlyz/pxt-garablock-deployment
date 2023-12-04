@@ -1140,6 +1140,7 @@ var translation = {
     "orange": "orange",
     "pause until": "chờ tới khi",
     "pause until %1": "chờ tới khi %1",
+    "pause %1 ms": "chờ %1 ms",
     "pink": "pink",
     "player 1": "player 1",
     "player 2": "player 2",
