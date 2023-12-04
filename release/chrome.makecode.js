@@ -1234,6 +1234,7 @@ var translation = {
     "{id:category}Tutorials": "{id:category}Tutorials",
     "{id:category}Variables": "{id:category}Biến số",
     "{id:category}Input": "{id:category}Cảm biến",
+    "{id:category}Cloud": "{id:category}Đám mây",
     "{id:csvfilename}console": "{id:csvfilename}console",
     "{id:csvfilename}data": "{id:csvfilename}data",
     "{id:csvseparator}\t": "{id:csvseparator}\t",
