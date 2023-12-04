@@ -133,7 +133,7 @@ var translation = {
     "Checkout the master branch...": "Checkout the master branch...",
     "Cherry": "Cherry",
     "Choose Hardware": "Choose Hardware",
-    "Choose a camera": "Choose a camera",
+    "Choose a camera": "Cài đặt webcam",
     "Choose your hardware": "Choose your hardware",
     "Circle Tool": "Circle Tool",
     "Clear": "Clear",
@@ -1328,7 +1328,10 @@ var translation = {
     "map %1 from low %2 high %3 to low %4 high %5": "chuyển %1 từ khoảng (%2 đến %3) sang khoảng (%4 đến %5)",
 }
 window.translation = translation
-pxt.Util.setLocalizedStrings(translation)
+
+if (pxt.Util.userLanguage() == 'vi') {
+    pxt.Util.setLocalizedStrings(translation)
+}
 
 
 // intercept util.lf
