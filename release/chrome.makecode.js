@@ -1281,7 +1281,7 @@ var translation = {
     "{id:var}list": "{id:var}danh sách",
     "{id:var}text list": "{id:var}danh sách chữ",
     "{id:var}value": "{id:var}phần từ",
-    "{id:while}do": "",
+    "{id:while}do": "{id:while}",
     "{id:extension-tag}Hardware": "{id:extension-tag}Hardware",
     "{id:extension-tag}Sprites": "{id:extension-tag}Sprites",
     "{id:var}myImage": "{id:var}myImage",
