@@ -1322,9 +1322,10 @@ var translation = {
     "{id:group}Theme": "{id:group}Theme",
     "{id:group}Tilemap Operations": "{id:group}Tilemap Operations",
     "{id:group}Tilemaps": "{id:group}Tilemaps",
+    "remainder of %1 / %2": "số dư khi %1 / %2"
 }
 window.translation = translation
-// pxt.Util.setLocalizedStrings(translation)
+pxt.Util.setLocalizedStrings(translation)
 
 
 // intercept util.lf
