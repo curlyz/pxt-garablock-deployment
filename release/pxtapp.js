@@ -1125,8 +1125,6 @@ var pxtc = ts.pxtc;
             }
             Util.lf_va = lf_va;
             function lf(format, ...args) {
-                // gb.override: need to know what lf does
-                console.log("LF", format, args);
                 return lf_va(format, args); // @ignorelf@
             }
             Util.lf = lf;
@@ -7311,7 +7309,7 @@ int main() {
                     .then(ret => new Promise((resolve, reject) => {
                     let retry = 0;
                     const delay = 8000; // ms
-                    const maxWait = 300000; // ms //gb.override: don't need to wait this long every time
+                    const maxWait = 300000; // ms
                     const startTry = pxt.U.now();
                     const tryGet = () => {
                         retry++;

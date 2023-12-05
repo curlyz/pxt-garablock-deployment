@@ -1104,7 +1104,7 @@ var translation = {
     "in {0} year{0:s}": "in {0} year{0:s}",
     "invalid pxt.json file": "invalid pxt.json file",
     "invalid syntax": "invalid syntax",
-    "join": "join",
+    "join": "kết hộp các chuỗi",
     "join items to create text": "join items to create text",
     "larger value of 2 numbers": "larger value of 2 numbers",
     "leaving tutorial...": "leaving tutorial...",
