@@ -6513,6 +6513,7 @@ const downloadGaraBlockFile = async () => {
     })
 }
 window.handleDownloadButton = downloadGaraBlockFile;
+window.garaBlockSaveFile = downloadGaraBlockFile;
 
 window.handleUploadButton = async () => {
     // await swal.fire({
