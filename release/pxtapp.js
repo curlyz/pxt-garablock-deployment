@@ -5294,14 +5294,11 @@ var pxt;
         function patchCdn(url) {
             if (!url)
                 return url;
-            // const online = pxt.getOnlineCdnUrl();
-            // if (online)
-            //     return url.replace("@cdnUrl@", online);
-            // else
-            //     return url.replace(/@cdnUrl@\/(blob|commit)\/[a-f0-9]{40}\//, "./");
-            // gb.override : cdn not working
-            console.log('browserutils.ts patchCdn() override', url);
-            return url;
+            const online = pxt.getOnlineCdnUrl();
+            if (online)
+                return url.replace("@cdnUrl@", online);
+            else
+                return url.replace(/@cdnUrl@\/(blob|commit)\/[a-f0-9]{40}\//, "./");
         }
         BrowserUtils.patchCdn = patchCdn;
         function initTheme() {
