@@ -543,7 +543,7 @@
         "files": {
             "README.md": " ",
             "assets.json": "",
-            "main.blocks": "<xml xmlns=\"http://www.w3.org/1999/xhtml\">\n  <variables></variables>\n  <block type=\"pxt-on-start\" x=\"0\" y=\"0\"></block>\n</xml>",
+            "main.blocks": "<xml xmlns=\"http://www.w3.org/1999/xhtml\">\n  <variables></variables>\n  <block type=\"grobot_general_onstart\" x=\"0\" y=\"0\"></block>\n</xml>",
             "main.ts": " "
         }
     },
