@@ -6051,7 +6051,8 @@ modem.exit = async () => {
 
 window.handleSignIn = async (opts) => {
     var { provider, state } = opts
-    infoNotification('Coming soon')
+    console.log('window.handleSignIn', opts)
+    infoNotification('Coming soon', opts)
 }
 window.provideLoginButton = () => {
     // alert("Yesss")
