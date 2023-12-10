@@ -619,7 +619,7 @@
         }
     ],
     "id": "arcade",
-    "title": "Microsoft MakeCode Arcade",
+    "title": "Learn at GaraSTEM",
     "name": "arcade",
     "description": "Develop your programming skills by quickly creating and modding retro arcade games with Blocks and JavaScript in the MakeCode editor",
     "htmlDocIncludes": {}
