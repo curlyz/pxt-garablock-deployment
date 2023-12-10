@@ -1,19 +1,19 @@
 {
-    "logoUrl": "https://makecode.com/org",
+    "logoUrl": "https://garastem.cim",
     "logo": "docs/static/logo.svg",
     "docsLogo": "docs/static/logo.svg",
     "cardLogo": "docs/static/logo.png",
     "appLogo": "docs/static/icons/favicon.ico",
     "portraitLogo": "docs/static/logo.svg",
     "footerLogo": "docs/static/logo.svg",
-    "organization": "Microsoft MakeCode",
-    "organizationText": "MakeCode Arcade",
-    "organizationShortText": "MakeCode",
+    "organization": "GaraSTEM",
+    "organizationText": "GaraSTEM GaraBlock",
+    "organizationShortText": "GaraBlock",
     "organizationUrl": "https://makecode.com/org",
     "organizationLogo": "docs/static/Micorsoft_logo_rgb_W-white_D-square.png",
     "organizationWideLogo": "docs/static/Micorsoft_logo_rgb_W-white_D.png",
-    "homeUrl": "https://arcade.makecode.com/",
-    "embedUrl": "https://arcade.makecode.com/",
+    "homeUrl": "https://learn.garastem.com/",
+    "embedUrl": "https://learn.garastem.com/",
     "privacyUrl": "https://go.microsoft.com/fwlink/?LinkId=521839",
     "termsOfUseUrl": "https://go.microsoft.com/fwlink/?LinkID=206977",
     "githubUrl": "https://github.com/microsoft/pxt-arcade",
@@ -49,7 +49,8 @@
         "ko",
         "es-ES",
         "es-MX",
-        "vi"
+        "vi",
+        "kh"
     ],
     "invertedMenu": true,
     "showHomeScreen": true,
@@ -58,7 +59,7 @@
     "greenScreen": true,
     "print": true,
     "hasAudio": true,
-    "allowPackageExtensions": true,
+    "allowPackageExtensions": false,
     "homeScreenHero": {
         "imageUrl": "docs/static/hero-gallery/multiplayer-banner.png",
         "name": "Multiplayer Games!",
@@ -76,9 +77,9 @@
     },
     "blocklyOptions": {
         "grid": {
-            "spacing": 20,
+            "spacing": 30,
             "length": 100,
-            "colour": "rgba(107, 79, 118, 0.10)",
+            "colour": "rgba(107, 79, 118, 0.05)",
             "snap": true
         }
     },
@@ -105,7 +106,7 @@
     ],
     "scriptManager": true,
     "saveInMenu": false,
-    "debugger": true,
+    "debugger": false,
     "importExtensionFiles": true,
     "experiments": [
         "debugExtensionCode",
@@ -122,12 +123,12 @@
     "errorList": true,
     "workspaceSearch": true,
     "extendEditor": true,
-    "simScreenshot": true,
+    "simScreenshot": false,
     "simScreenshotKey": "P",
     "simScreenshotMaxUriLength": 300000,
     "simGif": true,
     "simGifKey": "R",
-    "qrCode": true,
+    "qrCode": false,
     "shareFinishedTutorials": true,
     "nameProjectFirst": true,
     "githubEditor": true,
@@ -135,7 +136,7 @@
     "chooseLanguageRestrictionOnNewProject": true,
     "openProjectNewTab": true,
     "hasReferenceDocs": true,
-    "python": true,
+    "python": false,
     "assetEditor": true,
     "immersiveReader": true,
     "tutorialCodeValidation": true,
@@ -145,7 +146,7 @@
     "tours": {
         "editor": "/tours/editor-tour"
     },
-    "showOpenInVscode": true,
+    "showOpenInVscode": false,
     "hideReplaceMyCode": true,
     "TOC": [
         {
