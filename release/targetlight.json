@@ -19,7 +19,7 @@
             "netlearn": {
                 "id": "netlearn",
                 "name": "NetLearn",
-                "icon": "docs/static/providers/netlearn-logo.png",
+                "icon": "docs/static/providers/netlearn-logo.svg",
                 "identity": true,
                 "redirect": true
             }

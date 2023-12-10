@@ -60,10 +60,10 @@ CACHE:
 /worker.js
 /monacoworker.js
 
-# ver Sun Dec 10 2023 15:15:50 GMT+0700 (Indochina Time)
+# ver Sun Dec 10 2023 15:27:33 GMT+0700 (Indochina Time)
 
 # target
-/docs/static/providers/netlearn-logo.png
+/docs/static/providers/netlearn-logo.svg
 /docs/static/logo.svg
 /docs/static/logo.png
 /docs/static/icons/favicon.ico
