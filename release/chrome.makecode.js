@@ -1334,8 +1334,8 @@ var translation = {
     "map %1 from low %2 high %3 to low %4 high %5": "chuyển %1 từ khoảng (%2 đến %3) sang khoảng (%4 đến %5)",
     "forever": "lặp lại",
     "Sign up": "Đăng ký",
-    "Don't have an account": "Bạn chưa có tài khoản ?",
-    "Have an account?": "Bạn đã có tài khoản ?",
+    "Don't have an account?": "Bạn chưa có tài khoản?",
+    "Have an account?": "Bạn đã có tài khoản?",
     "Sign in": "Đăng nhập",
     "Sign in to save your progress and access your work anytime, anywhere.": "Đăng nhập để lưu tiến trình và truy cập dự án của bạn bất cứ lúc nào, ở bất cứ đâu.",
     "Join now to save your progress and access your work anytime, anywhere.": "Đăng ký ngay để lưu tiến trình và truy cập dự án của bạn bất cứ lúc nào, ở bất cứ đâu.",
@@ -1343,6 +1343,7 @@ var translation = {
     "Continue with {0}": "Tiếp tục với {0}",
     "Remember me": "Lưu thông tin đăng nhập",
     "Learn more": "Tìm hiểu thêm",
+    "Sign In": "Đăng ký"
     
 }
 window.translation = translation
