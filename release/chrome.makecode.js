@@ -1333,6 +1333,10 @@ var translation = {
     "contrain %1 between %2 and %3": "giới hạn %1 giữa %2 và %3",
     "map %1 from low %2 high %3 to low %4 high %5": "chuyển %1 từ khoảng (%2 đến %3) sang khoảng (%4 đến %5)",
     "forever": "lặp lại",
+    "Sign up": "Đăng ký",
+    "Don't have an account": "Bạn chưa có tài khoản ?",
+    "Have an account?": "Bạn đã có tài khoản ?",
+    "Sign in": "Đăng nhập",
 }
 window.translation = translation
 
