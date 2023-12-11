@@ -1337,6 +1337,8 @@ var translation = {
     "Don't have an account": "Bạn chưa có tài khoản ?",
     "Have an account?": "Bạn đã có tài khoản ?",
     "Sign in": "Đăng nhập",
+    "Sign in to save your progress and access your work anytime, anywhere.": "Đăng nhập để lưu tiến trình và truy cập dự án của bạn bất cứ lúc nào, ở bất cứ đâu.",
+    "Join now to save your progress and access your work anytime, anywhere.": "Đăng ký ngay để lưu tiến trình và truy cập dự án của bạn bất cứ lúc nào, ở bất cứ đâu.",
 }
 window.translation = translation
 
