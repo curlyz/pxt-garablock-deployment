@@ -1,19 +1,19 @@
 {
-    "logoUrl": "https://garastem.cim",
+    "logoUrl": "https://makecode.com/org",
     "logo": "docs/static/logo.svg",
     "docsLogo": "docs/static/logo.svg",
     "cardLogo": "docs/static/logo.png",
     "appLogo": "docs/static/icons/favicon.ico",
     "portraitLogo": "docs/static/logo.svg",
     "footerLogo": "docs/static/logo.svg",
-    "organization": "GaraSTEM",
-    "organizationText": "GaraSTEM GaraBlock",
-    "organizationShortText": "GaraBlock",
+    "organization": "Microsoft MakeCode",
+    "organizationText": "MakeCode Arcade",
+    "organizationShortText": "MakeCode",
     "organizationUrl": "https://makecode.com/org",
     "organizationLogo": "docs/static/Micorsoft_logo_rgb_W-white_D-square.png",
     "organizationWideLogo": "docs/static/Micorsoft_logo_rgb_W-white_D.png",
-    "homeUrl": "https://learn.garastem.com/",
-    "embedUrl": "https://learn.garastem.com/",
+    "homeUrl": "https://arcade.makecode.com/",
+    "embedUrl": "https://arcade.makecode.com/",
     "privacyUrl": "https://go.microsoft.com/fwlink/?LinkId=521839",
     "termsOfUseUrl": "https://go.microsoft.com/fwlink/?LinkID=206977",
     "githubUrl": "https://github.com/microsoft/pxt-arcade",
@@ -49,8 +49,7 @@
         "ko",
         "es-ES",
         "es-MX",
-        "vi",
-        "kh"
+        "vi"
     ],
     "invertedMenu": true,
     "showHomeScreen": true,
@@ -59,7 +58,7 @@
     "greenScreen": true,
     "print": true,
     "hasAudio": true,
-    "allowPackageExtensions": false,
+    "allowPackageExtensions": true,
     "homeScreenHero": {
         "imageUrl": "docs/static/hero-gallery/multiplayer-banner.png",
         "name": "Multiplayer Games!",
@@ -77,9 +76,9 @@
     },
     "blocklyOptions": {
         "grid": {
-            "spacing": 30,
+            "spacing": 20,
             "length": 100,
-            "colour": "rgba(107, 79, 118, 0.05)",
+            "colour": "rgba(107, 79, 118, 0.10)",
             "snap": true
         }
     },
@@ -106,7 +105,7 @@
     ],
     "scriptManager": true,
     "saveInMenu": false,
-    "debugger": false,
+    "debugger": true,
     "importExtensionFiles": true,
     "experiments": [
         "debugExtensionCode",
@@ -123,12 +122,12 @@
     "errorList": true,
     "workspaceSearch": true,
     "extendEditor": true,
-    "simScreenshot": false,
+    "simScreenshot": true,
     "simScreenshotKey": "P",
     "simScreenshotMaxUriLength": 300000,
     "simGif": true,
     "simGifKey": "R",
-    "qrCode": false,
+    "qrCode": true,
     "shareFinishedTutorials": true,
     "nameProjectFirst": true,
     "githubEditor": true,
@@ -136,7 +135,7 @@
     "chooseLanguageRestrictionOnNewProject": true,
     "openProjectNewTab": true,
     "hasReferenceDocs": true,
-    "python": false,
+    "python": true,
     "assetEditor": true,
     "immersiveReader": true,
     "tutorialCodeValidation": true,
@@ -146,7 +145,7 @@
     "tours": {
         "editor": "/tours/editor-tour"
     },
-    "showOpenInVscode": false,
+    "showOpenInVscode": true,
     "hideReplaceMyCode": true,
     "TOC": [
         {
@@ -619,7 +618,7 @@
         }
     ],
     "id": "arcade",
-    "title": "Learn at GaraSTEM",
+    "title": "Microsoft MakeCode Arcade",
     "name": "arcade",
     "description": "Develop your programming skills by quickly creating and modding retro arcade games with Blocks and JavaScript in the MakeCode editor",
     "htmlDocIncludes": {}

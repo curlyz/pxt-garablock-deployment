@@ -60,10 +60,13 @@ CACHE:
 /worker.js
 /monacoworker.js
 
-# ver Mon Dec 11 2023 10:13:56 GMT+0700 (Indochina Time)
+# ver Mon Dec 11 2023 10:18:33 GMT+0700 (Indochina Time)
 
 # target
-/docs/static/providers/netlearn-logo.svg
+/docs/static/providers/github-mark.png
+/docs/static/providers/microsoft-logo.svg
+/docs/static/providers/google-logo.svg
+/docs/static/providers/clever-logo.png
 /docs/static/logo.svg
 /docs/static/logo.png
 /docs/static/icons/favicon.ico
