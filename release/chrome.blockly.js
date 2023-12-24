@@ -5051,7 +5051,7 @@ if (true) {
             gen.Import('import pixel')
             gen.Static(`${object} = pixel.Pixel(${port_map[port]}${gen.tar(block)})`)
             gen.Setup(`await ${object}.begin()\n`)
-            let code = `await ${object}.set_colour(${colour.code},${gen.rid(block)})\n`
+            let code = `await ${object}.set_colour(${colour.code},None, ${gen.rid(block)})\n`
             return code
         }
     }
