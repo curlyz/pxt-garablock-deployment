@@ -7872,7 +7872,7 @@ if (true) {
             // this will bet the port name ?
             gen.Import('import extender')
             console.log(`scoped/ detected ${block.type} inside ${scope}`);
-            return `,target=extender.of(${scope})`
+            return `,target=extender.of(board.${scope})`
         }
 
     }
