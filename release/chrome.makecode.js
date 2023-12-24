@@ -1919,10 +1919,10 @@ function ensureExtenderScope(block, scope) {
     var field = block.getField("__target__")
     if (pxt.Util.userLanguage() == 'vi') {
         // pxt.Util.setLocalizedStrings(translation)
-        var displayText = 'của Extender'
+        var displayText = 'Extender ►'
     }
     else {
-        var displayText = `of Extender`
+        var displayText = `Extender ►`
     }
 
     if (field == null) {
@@ -1932,7 +1932,7 @@ function ensureExtenderScope(block, scope) {
         var portinput = portfield.getParentInput();
         var portFieldIndex = portinput.fieldRow.indexOf(portfield)
         var targetField = new Blockly.FieldLabel(displayText)
-        portinput.insertFieldAt(portFieldIndex + 1, targetField, "__target__")
+        portinput.insertFieldAt(portFieldIndex, targetField, "__target__")
 
 
 
