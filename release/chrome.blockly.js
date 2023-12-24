@@ -6537,7 +6537,10 @@ if (true) {
         type: value,
         python: block => {
             gen.Import('import colour_sensor')
-            let code = `await ${gen.Symbol('colour_sensor.read_colour')}(${gen.rid(block)})`
+
+            let { mode } = gen.scrape(block)
+
+            let code = `await ${gen.Symbol('colour_sensor.read_colour')}(${gen.enum('colour_sensor', mode)}, ${gen.rid(block)})`
             return [JSON.stringify({
                 code: code,
                 precode: [],
