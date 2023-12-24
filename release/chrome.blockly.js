@@ -7869,7 +7869,7 @@ if (true) {
             // this will bet the port name ?
             gen.Import('import expander')
             console.log(`scoped/ detected ${block.type} inside ${scope}`);
-            return `,target=expander.Expander(${scope})`
+            return `,target=expander.target(${scope})`
         }
 
     }
