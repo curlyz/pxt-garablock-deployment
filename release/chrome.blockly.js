@@ -5055,6 +5055,24 @@ if (true) {
             return code
         }
     }
+    makecode.output_pixel_setcoloursingle = {
+        block: ['field.port', 'input.colour', 'input.position'],
+        type: action,
+        // arduino: block => {
+        //     let { port, colour } = gen.scrape(block)
+        //     let code = []
+        //     let precode = []
+        // }
+        python: block => {
+            let { port, colour, position } = gen.scrape(block)
+            let object = gen.object_name('pixel', port)
+            gen.Import('import pixel')
+            gen.Static(`${object} = pixel.Pixel(${port_map[port]}${gen.tar(block)})`)
+            gen.Setup(`await ${object}.begin()\n`)
+            let code = `await ${object}.set_colour(${colour.code},${position.code}, ${gen.rid(block)})\n`
+            return code
+        }
+    }
     makecode.output_relay_setstate = {
         block: ['field.port', 'input.state'],
         type: action,
