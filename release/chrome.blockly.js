@@ -2817,8 +2817,8 @@ if (true) {
         python: block => {
             let { port, handler } = gen.scrape(block)
             let object = gen.object_name('expander', port)
-            gen.Import('import expander')
-            gen.Static(`${object}=expander.of(${port_map[port]}${gen.tar(block)})`)
+            gen.Import('import extender')
+            gen.Static(`${object}=extender.of(board.${port_map[port]}${gen.tar(block)})`)
             gen.Setup(`await ${object}.begin()\n`)
             
             let code = `async with ${object}:\n${handler}\n`
@@ -7870,9 +7870,9 @@ if (true) {
 
         else {
             // this will bet the port name ?
-            gen.Import('import expander')
+            gen.Import('import extender')
             console.log(`scoped/ detected ${block.type} inside ${scope}`);
-            return `,target=expander.of(${scope})`
+            return `,target=extender.of(${scope})`
         }
 
     }
