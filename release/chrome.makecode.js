@@ -1917,7 +1917,14 @@ function removeExtenderScope(block) {
 }
 function ensureExtenderScope(block, scope) {
     var field = block.getField("__target__")
-    var displayText = `of Extender at ${scope}`
+    if (pxt.Util.userLanguage() == 'vi') {
+        // pxt.Util.setLocalizedStrings(translation)
+        var displayText = 'của Extender'
+    }
+    else {
+        var displayText = `of Extender`
+    }
+
     if (field == null) {
         // create a new field right after the port field
         // find the port field
