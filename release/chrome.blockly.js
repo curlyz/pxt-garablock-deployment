@@ -2818,7 +2818,7 @@ if (true) {
             let { port, handler } = gen.scrape(block)
             let object = gen.object_name('expander', port)
             gen.Import('import extender')
-            gen.Static(`${object}=extender.of(board.${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=extender.of(${port_map[port]}${gen.tar(block)})`)
             gen.Setup(`await ${object}.begin()\n`)
             
             let code = `async with ${object}:\n${handler}\n`
