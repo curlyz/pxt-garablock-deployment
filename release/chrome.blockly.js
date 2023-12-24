@@ -4641,9 +4641,11 @@ if (true) {
         python: block => {
             let { port } = gen.scrape(block)
             let object = gen.object_name('potentiometer', port)
-            gen.Import('import potentiometer')
-            gen.Static(`${object} = potentiometer.Potentiometer(${port_map[port]}${gen.tar(block)})`)
-            let code = `await ${object}.read_position(${gen.rid(block)})`
+            gen.Import('import opamp_sensor')
+            gen.Static(`${object} = opamp_sensor.OpampSensor(${port_map[port]}${gen.tar(block)})`)
+            // this code must use opamp sensor
+
+            let code = `await ${object}.read_analog(${gen.rid(block)})`
             return [JSON.stringify({
                 code: code, static: [], precode: []
             }), ORDER_NONE]
@@ -4747,6 +4749,7 @@ if (true) {
             }), ORDER_NONE]
         }
     }
+    makecode.input_gas_readvalue_analog = makecode.input_light_readvalue_analog
     makecode.input_light_readvalue = {
         block: ['field.port'],
         type: value,
@@ -4765,7 +4768,6 @@ if (true) {
     makecode.input_water_readvalue = makecode.input_light_readvalue
     makecode.input_flame_readvalue = makecode.input_light_readvalue
     makecode.input_laser_checkevent = makecode.input_light_readvalue
-
     makecode.input_temperature_read = {
         block: ['field.port'],
         type: value,
