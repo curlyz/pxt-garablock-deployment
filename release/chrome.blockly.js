@@ -4535,7 +4535,7 @@ if (true) {
             gen.Import('import sound_sensor')
             gen.Static(`${object} = sound_sensor.SoundSensor(${port_map[port]}${gen.tar(block)})`)
             gen.Setup(`await ${object}.begin()\n`)
-            let code = `await ${object}.check(${gen.enum('sound_sensor', event)},${gen.rid(block)})`
+            let code = `await ${object}.read_loudness(${gen.rid(block)})`
             return [JSON.stringify({
                 code: code, static: [], precode: []
             }), ORDER_NONE]
