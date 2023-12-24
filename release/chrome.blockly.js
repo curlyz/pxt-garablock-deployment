@@ -4750,6 +4750,7 @@ if (true) {
         }
     }
     makecode.input_gas_readvalue_analog = makecode.input_light_readvalue_analog
+    makecode.input_flame_readvalue_analog = makecode.input_light_readvalue_analog
     makecode.input_light_readvalue = {
         block: ['field.port'],
         type: value,
