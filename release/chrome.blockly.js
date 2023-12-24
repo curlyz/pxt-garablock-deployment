@@ -7860,21 +7860,38 @@ if (true) {
 
     gen.tar = (block) => {
         // Generate the target string for some of the blocks
-        if (window.optimizeGenerator) {
+        let scope = getExtenderScope(block);
+        if (scope == null) {
             return ''
         }
+
         else {
-            if (gen.grobot_ble_target == null) {
-                return ',target=None'
-            }
-            else {
-                return `,target=${gen.grobot_ble_target}`
-            }
+            // this will bet the port name ?
+            gen.Import('import expander')
+            console.log(`scoped/ detected ${block.type} inside ${scope}`);
+            return `,target=expander.Expander(${scope})`
         }
-        // return `target=${gen.grobot_ble_target || 'None'}`
+
     }
     gen.build(MakeCode)
 }
+
+
+function getExtenderScope(block) {
+    var parents = []
+    var iter = block
+    while (true) {
+        var parent = iter.getSurroundParent()
+        if (parent == null) break;
+        if (parent.type == 'grobot_extender_scoped') {
+            parents.push(parent)
+        }
+        iter = parent
+    }
+    if (parents.length == 0) return null
+    return parents[0].getFieldValue("port").split(".")[1]
+}
+
 
 
 // console.log("OK")
