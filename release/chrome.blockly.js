@@ -4614,7 +4614,7 @@ if (true) {
             let event = state
             let object = gen.object_name('motion_sensor', port)
             gen.Import('import motion_sensor\n')
-            gen.Static(`${object} = motion_sensor.MotionSensor(${port_map[port]})\n`)
+            gen.Static(`${object} = motion_sensor.MotionSensor(${port_map[port]}${gen.tar(block)})\n`)
             gen.Setup(`await ${object}.begin()\n`)
             let code = `await ${object}.check(${gen.enum('motion_sensor', event)},${gen.rid(block)})`
             return [JSON.stringify({
