@@ -60,16 +60,13 @@ CACHE:
 /worker.js
 /monacoworker.js
 
-# ver Mon Dec 25 2023 14:23:53 GMT+0700 (Indochina Time)
+# ver Mon Dec 25 2023 14:39:00 GMT+0700 (Indochina Time)
 
 # target
 /docs/static/providers/netlearn-logo.svg
 /docs/static/logo.gs.png
 /docs/static/logo.svg
-/docs/static/logo.png
 /docs/static/icons/favicon.ico
-/docs/static/Micorsoft_logo_rgb_W-white_D-square.png
-/docs/static/Micorsoft_logo_rgb_W-white_D.png
 /docs/static/hero-gallery/multiplayer-banner.png
 /docs/static/badges/badge-forest.png
 /docs/static/badges/badge-forest-locked.png

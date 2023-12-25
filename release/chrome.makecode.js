@@ -998,7 +998,7 @@ var translation = {
     "board": "board",
     "bool": "bool",
     "boolean operation": "boolean operation",
-    "break": "phá vòng lặp",
+    "break": "ngắt vòng lặp",
     "breakpoint": "breakpoint",
     "brown": "brown",
     "c": "c",
