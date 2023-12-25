@@ -6882,7 +6882,7 @@ async function mainthread() {
             console.warn('saveProjectAsync, ignore, no blocks')
         }
     }, 5000)
-    intervals.block_disabler = setInterval(routineBlockDisabler, 1000)
+    intervals.block_disabler = setInterval(routineBlockDisabler, 5000)
     intervals.webcam_manager = setInterval(routinWebcamManager, 1000)
 
     //# start event trigger
