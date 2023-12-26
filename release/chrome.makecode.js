@@ -1670,15 +1670,8 @@ window.generate_code = async (options) => {
         req = await fetch(`${location.origin}/chrome.blockly.js`)
     }
     else {
-        if (localStorage.getItem("DEV_MAKECODE") != undefined) {
-            console.log('generator/ load dev version')
-            req = await fetch('https://learn.garastem.com/api/v1/toolchain/blockly')
-        }
-        else {
-            console.log('generator/ loading public version')
 
-            req = await fetch('https://learn.garastem.com/chrome.blockly.js')
-        }
+        req = await fetch('chrome.blockly.js')
     }
 
     if (req.status == 200) {
