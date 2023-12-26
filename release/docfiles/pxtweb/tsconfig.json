@@ -7,12 +7,7 @@
         "outFile": "../../built/web/pxtweb.js",
         "newLine": "LF",
         "sourceMap": false,
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "scripthost",
-            "es2018"
-        ],
+        "lib": ["dom", "dom.iterable", "scripthost", "es2018"],
         "types": [],
         "skipLibCheck": true
     }
