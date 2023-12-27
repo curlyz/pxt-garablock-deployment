@@ -497,7 +497,7 @@
     ],
     "versions": {
         "target": "1.13.50",
-        "pxt": "9.3.6"
+        "pxt": "9.3.7"
     },
     "blocksprj": {
         "id": "blocksprj",

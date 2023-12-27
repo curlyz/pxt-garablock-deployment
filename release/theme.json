@@ -1,8 +1,8 @@
 {
     "logoUrl": "https://makecode.com/org",
-    "logo": "docs/static/logo.gs.png",
+    "logo": "docs/static/logo.svg",
     "docsLogo": "docs/static/logo.svg",
-    "cardLogo": "docs/static/logo.gs.png",
+    "cardLogo": "docs/static/logo.png",
     "appLogo": "docs/static/icons/favicon.ico",
     "portraitLogo": "docs/static/logo.svg",
     "footerLogo": "docs/static/logo.svg",
