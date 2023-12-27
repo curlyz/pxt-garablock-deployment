@@ -13,6 +13,8 @@ var { arduino, avrbro, buffer, msgpack, observablehq, plotly, stk500, swal, teac
 window.swal = swal
 window.msgpack = msgpack
 
+localStorage.setItem("DEV", true)
+
 function getStartText() {
     return `Start #${app_tsx.state.projectName}`
 }
@@ -998,7 +1000,7 @@ var translation = {
     "board": "board",
     "bool": "bool",
     "boolean operation": "boolean operation",
-    "break": "phá vòng lặp",
+    "break": "ngắt vòng lặp",
     "breakpoint": "breakpoint",
     "brown": "brown",
     "c": "c",
@@ -1197,7 +1199,7 @@ var translation = {
     "white": "white",
     "yellow": "yellow",
     "forever": "lặp vô tận",
-    
+
     "{0}": "{0}",
     "{0} / {1}": "{0} / {1}",
     "{0} Logo": "{0} Logo",
@@ -1344,7 +1346,7 @@ var translation = {
     "Remember me": "Lưu thông tin đăng nhập",
     "Learn more": "Tìm hiểu thêm",
     "Sign In": "Đăng ký"
-    
+
 }
 window.translation = translation
 
@@ -1667,18 +1669,11 @@ window.generate_code = async (options) => {
     let req
     if (location.origin.includes('localhost')) {
         console.log('generator/ loading localhost version')
-        req = await fetch(`${location.origin}/chrome.blockly.js`)
+        req = await fetch(`chrome.blockly.js`)
     }
     else {
-        if (localStorage.getItem("DEV_MAKECODE") != undefined) {
-            console.log('generator/ load dev version')
-            req = await fetch('https://learn.garastem.com/api/v1/toolchain/blockly')
-        }
-        else {
-            console.log('generator/ loading public version')
 
-            req = await fetch('https://learn.garastem.com/chrome.blockly.js')
-        }
+        req = await fetch('chrome.blockly.js')
     }
 
     if (req.status == 200) {
@@ -1757,7 +1752,7 @@ function routineBlockDisabler() {
     // Blockly.getMainWorkspace().getAllBlocks().forEach(block => {
     //     var root = block.getRootBlock()
     //     window.root = root
-        
+
 
     // })
 
@@ -1824,7 +1819,7 @@ function __link_update_expander_blocks__() {
         if (parents.length == 0) return null
         return parents[0].getFieldValue("port").split(".")[1]
     }
-    var analogBlocks = [
+    var analogBlockTypes = [
         'input_button_readvalue',
         'input_sound_read',
         'input_light_readvalue_analog',
@@ -1833,16 +1828,53 @@ function __link_update_expander_blocks__() {
         'input_gas_readvalue_analog',
         'input_slider_readvalue',
     ]
-    var blocks = []
+
+
+    var extenderBlockTypes = [
+        "grobot_line_readsensor2",
+        "grobot_line_readmask2",
+        "input_button_readvalue",
+        "input_button_checkevent",
+        "input_laser_checkevent",
+        "input_motion_read",
+        "input_sound_read",
+        "input_weather_readvalue",
+        "input_light_readvalue_analog",
+        "input_light_readvalue",
+        "input_water_readvalue_analog",
+        "input_water_readvalue",
+        "input_flame_readvalue_analog",
+        "input_flame_readvalue",
+        "input_temperature_read",
+        "input_gas_readvalue_analog",
+        "input_gas_readvalue",
+        "input_proximity_readvalue",
+        "input_slider_readvalue",
+        "input_distance_settimeout",
+        "input_distance_readvalue",
+        "output_relay_setstate",
+        "output_laser_setstate",
+        "output_led_setstate",
+        "output_servo_setangle",
+    ]
+
+
+
+    var analogBlocks = []
+    var extenderBlocks = []
     Blockly.getMainWorkspace().getAllBlocks().forEach(block => {
-        if (!analogBlocks.includes(block.type)) return
         if (!block.isEnabled()) return
+        if (analogBlockTypes.includes(block.type)) {
+            analogBlocks.push(block)
+        }
+        if (extenderBlockTypes.includes(block.type)) {
+            extenderBlocks.push(block)
+        }
         // when user is dragging, this checking should not work
 
-        blocks.push(block)
     })
 
-    for (var block of blocks) {
+    for (var block of analogBlocks) {
         // console.log("Checking", block.type)
         var scope = getExtenderScope(block)
         if (scope == null) {
@@ -1851,6 +1883,58 @@ function __link_update_expander_blocks__() {
         }
     }
 
+    // Add a indicator that this block is using Extender right before the Port 
+    // Motion PORT1 (of Expander at Port4)
+
+
+    // Handling the blocks that support extender protocol
+    for (var block of extenderBlocks) {
+        var scope = getExtenderScope(block)
+        if (scope == null) {
+            // make sure we remove the field
+            removeExtenderScope(block);
+        }
+
+        else {
+            ensureExtenderScope(block, scope)
+        }
+
+    }
+
+
+
+}
+
+function removeExtenderScope(block) {
+    var field = block.getField("__target__")
+    if (field == null) return;
+    field.getParentInput().removeField("__target__");
+}
+function ensureExtenderScope(block, scope) {
+    var field = block.getField("__target__")
+    if (pxt.Util.userLanguage() == 'vi') {
+        // pxt.Util.setLocalizedStrings(translation)
+        var displayText = 'Extender ►'
+    }
+    else {
+        var displayText = `Extender ►`
+    }
+
+    if (field == null) {
+        // create a new field right after the port field
+        // find the port field
+        var portfield = block.getField("port");
+        var portinput = portfield.getParentInput();
+        var portFieldIndex = portinput.fieldRow.indexOf(portfield)
+        var targetField = new Blockly.FieldLabel(displayText)
+        portinput.insertFieldAt(portFieldIndex, targetField, "__target__")
+
+
+
+    }
+    else {
+        field.setValue(displayText);
+    }
 }
 
 //* User log in and log out via WebSocket. The websocket is only transporter layer
@@ -6168,7 +6252,7 @@ async function startServiceWorker() {
                     }
                     else {
                         window.toast({
-                            title: "GaraBlock is updating ...",
+                            title: "GaraBlock is updating ....",
                             icon: "warning",
                             timer: 30000,
                         })
@@ -6793,7 +6877,7 @@ async function mainthread() {
             console.warn('saveProjectAsync, ignore, no blocks')
         }
     }, 5000)
-    intervals.block_disabler = setInterval(routineBlockDisabler, 1000)
+    intervals.block_disabler = setInterval(routineBlockDisabler, 5000)
     intervals.webcam_manager = setInterval(routinWebcamManager, 1000)
 
     //# start event trigger

@@ -2817,8 +2817,8 @@ if (true) {
         python: block => {
             let { port, handler } = gen.scrape(block)
             let object = gen.object_name('expander', port)
-            gen.Import('import expander')
-            gen.Static(`${object}=expander.WireExpander(${port_map[port]}${gen.tar(block)})`)
+            gen.Import('import extender')
+            gen.Static(`${object}=extender.of(${port_map[port]}${gen.tar(block)})`)
             gen.Setup(`await ${object}.begin()\n`)
             
             let code = `async with ${object}:\n${handler}\n`
@@ -4122,7 +4122,7 @@ if (true) {
             let { colour } = gen.scrape(block)
             gen.Import('import pixel')
             let fn = gen.Symbol('pixel.set_colour')
-            let code = `await ${fn}(${colour.code},None,${gen.rid(block)}${gen.tar(block)})\n`
+            let code = `await ${fn}(${colour.code},None,${gen.rid(block)})\n`
             return code
         },
         javascript: block => {
@@ -4149,7 +4149,7 @@ if (true) {
             let { colour, position } = gen.scrape(block)
             gen.Import('import pixel')
             let fn = gen.Symbol('pixel.set_colour')
-            let code = `await ${fn}(${colour.code}, ${position.code},${gen.rid(block)}${gen.tar(block)})\n`
+            let code = `await ${fn}(${colour.code}, ${position.code},${gen.rid(block)})\n`
             return code
         },
         javascript: block => {
@@ -4535,7 +4535,7 @@ if (true) {
             gen.Import('import sound_sensor')
             gen.Static(`${object} = sound_sensor.SoundSensor(${port_map[port]}${gen.tar(block)})`)
             gen.Setup(`await ${object}.begin()\n`)
-            let code = `await ${object}.check(${gen.enum('sound_sensor', event)},${gen.rid(block)})`
+            let code = `await ${object}.read_loudness(${gen.rid(block)})`
             return [JSON.stringify({
                 code: code, static: [], precode: []
             }), ORDER_NONE]
@@ -4614,7 +4614,7 @@ if (true) {
             let event = state
             let object = gen.object_name('motion_sensor', port)
             gen.Import('import motion_sensor\n')
-            gen.Static(`${object} = motion_sensor.MotionSensor(${port_map[port]})\n`)
+            gen.Static(`${object} = motion_sensor.MotionSensor(${port_map[port]}${gen.tar(block)})\n`)
             gen.Setup(`await ${object}.begin()\n`)
             let code = `await ${object}.check(${gen.enum('motion_sensor', event)},${gen.rid(block)})`
             return [JSON.stringify({
@@ -4641,9 +4641,11 @@ if (true) {
         python: block => {
             let { port } = gen.scrape(block)
             let object = gen.object_name('potentiometer', port)
-            gen.Import('import potentiometer')
-            gen.Static(`${object} = potentiometer.Potentiometer(${port_map[port]}${gen.tar(block)})`)
-            let code = `await ${object}.read_position(${gen.rid(block)})`
+            gen.Import('import opamp_sensor')
+            gen.Static(`${object} = opamp_sensor.OpampSensor(${port_map[port]}${gen.tar(block)})`)
+            // this code must use opamp sensor
+
+            let code = `await ${object}.read_analog(${gen.rid(block)})`
             return [JSON.stringify({
                 code: code, static: [], precode: []
             }), ORDER_NONE]
@@ -4747,6 +4749,8 @@ if (true) {
             }), ORDER_NONE]
         }
     }
+    makecode.input_gas_readvalue_analog = makecode.input_light_readvalue_analog
+    makecode.input_flame_readvalue_analog = makecode.input_light_readvalue_analog
     makecode.input_light_readvalue = {
         block: ['field.port'],
         type: value,
@@ -4765,7 +4769,6 @@ if (true) {
     makecode.input_water_readvalue = makecode.input_light_readvalue
     makecode.input_flame_readvalue = makecode.input_light_readvalue
     makecode.input_laser_checkevent = makecode.input_light_readvalue
-
     makecode.input_temperature_read = {
         block: ['field.port'],
         type: value,
@@ -5030,7 +5033,7 @@ if (true) {
         python: block => {
             let { port, name } = gen.scrape(block)
             gen.Import('import infrared')
-            gen.Static(`${object} = infrared.Infrared(${port_map[port]}, ${gen.tar(block)})`)
+            gen.Static(`${object} = infrared.Infrared(${port_map[port]}`)
             gen.Setup(`await ${object}.begin()\n`)
             let code = `await ${object}.send_signal(${name.code},${gen.rid(block)})\n`
             return code
@@ -5049,9 +5052,27 @@ if (true) {
             let { port, colour } = gen.scrape(block)
             let object = gen.object_name('pixel', port)
             gen.Import('import pixel')
-            gen.Static(`${object} = pixel.Pixel(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object} = pixel.Pixel(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
-            let code = `await ${object}.set_colour(${colour.code},${gen.rid(block)})\n`
+            let code = `await ${object}.set_colour(${colour.code},None, ${gen.rid(block)})\n`
+            return code
+        }
+    }
+    makecode.output_pixel_setcoloursingle = {
+        block: ['field.port', 'input.colour', 'input.position'],
+        type: action,
+        // arduino: block => {
+        //     let { port, colour } = gen.scrape(block)
+        //     let code = []
+        //     let precode = []
+        // }
+        python: block => {
+            let { port, colour, position } = gen.scrape(block)
+            let object = gen.object_name('pixel', port)
+            gen.Import('import pixel')
+            gen.Static(`${object} = pixel.Pixel(${port_map[port]})`)
+            gen.Setup(`await ${object}.begin()\n`)
+            let code = `await ${object}.set_colour(${colour.code},${position.code}, ${gen.rid(block)})\n`
             return code
         }
     }
@@ -5294,7 +5315,7 @@ if (true) {
             let { power } = gen.scrape(block)
             gen.Import('import motor')
             let fn = gen.Symbol('motor.forward')
-            return `await ${fn}(${power.code},0,${gen.rid(block)}${gen.tar(block)})\n`
+            return `await ${fn}(${power.code},0,${gen.rid(block)})\n`
         },
         javascript: block => {
             let { power } = gen.scrape(block)
@@ -5554,7 +5575,7 @@ if (true) {
         python: block => {
             let { state } = gen.scrape(block)
             gen.Import('import board')
-            return `await board.SetBuzzer(${state.code},${gen.rid(block)}${gen.tar(block)})\n`
+            return `await board.SetBuzzer(${state.code},${gen.rid(block)})\n`
         },
         javascript: block => {
             let { state } = gen.scrape(block)
@@ -5689,7 +5710,7 @@ if (true) {
         python: block => {
             let { song } = gen.scrape(block)
             gen.Import('import buzzer')
-            return `await buzzer.play_melody(melody="${song.split('.')[1].replace('"', '')}",${gen.rid(block)}${gen.tar(block)})\n`
+            return `await buzzer.play_melody(melody="${song.split('.')[1].replace('"', '')}",${gen.rid(block)})\n`
         }
     }
     let note_map = {
@@ -5770,7 +5791,7 @@ if (true) {
 
             // belong to garastem.py
             return `await ${gen.Symbol('buzzer.PlayNote_Basic')}(${note},${notelength_map
-            [beat]},${gen.rid(block)}${gen.tar(block)})\n`
+            [beat]},${gen.rid(block)})\n`
         },
         // javascript: block => {
         //     let { note, beat } = gen.scrape(block)
@@ -5788,7 +5809,7 @@ if (true) {
         python: block => {
             let { freq, time } = gen.scrape(block)
             gen.Import('import buzzer')
-            return `await ${gen.Symbol('buzzer.PlayTone')}(${freq.code},${time.code},${gen.rid(block)}${gen.tar(block)})\n`
+            return `await ${gen.Symbol('buzzer.PlayTone')}(${freq.code},${time.code},${gen.rid(block)})\n`
         },
         javascript: block => {
             let { freq, time } = gen.scrape(block)
@@ -5807,7 +5828,7 @@ if (true) {
             let { note, time } = gen.scrape(block)
             gen.Import('import buzzer')
             window.note = note
-            return `await ${gen.Symbol('buzzer.PlayTone')}(${note},${time.code},${gen.rid(block)}${gen.tar(block)})\n`
+            return `await ${gen.Symbol('buzzer.PlayTone')}(${note},${time.code},${gen.rid(block)})\n`
         },
         javascript: block => {
             let { note, time } = gen.scrape(block)
@@ -5827,7 +5848,7 @@ if (true) {
         python: block => {
             let { semi, beat } = gen.scrape(block)
             gen.Import('import buzzer')
-            return `await PlayNote(${semi.code}, ${beat.code},${gen.rid(block)}${gen.tar(block)})\n`
+            return `await PlayNote(${semi.code}, ${beat.code},${gen.rid(block)})\n`
         },
         javascript: block => {
             let { semi, beat } = gen.scrape(block)
@@ -5846,7 +5867,7 @@ if (true) {
         python: block => {
             let { bpm } = gen.scrape(block)
             gen.Import('import buzzer')
-            return `await ${gen.Symbol('buzzer.SetBPM')}(${bpm.code},${gen.rid(block)}${gen.tar(block)})\n`
+            return `await ${gen.Symbol('buzzer.SetBPM')}(${bpm.code},${gen.rid(block)})\n`
         },
         javascript: block => {
             let { bpm } = gen.scrape(block)
@@ -5866,7 +5887,7 @@ if (true) {
         python: block => {
             let { beat } = gen.scrape(block)
             gen.Import('import buzzer')
-            return `await buzzer.PlayMute(${notelength_map[beat]},${gen.rid(block)}${gen.tar(block)})\n`
+            return `await buzzer.PlayMute(${notelength_map[beat]},${gen.rid(block)})\n`
         },
         javascript: block => {
             let { beat } = gen.scrape(block)
@@ -5927,7 +5948,7 @@ if (true) {
         python: block => {
             let { text, column, row } = gen.scrape(block)
             text.code = text.code || '""'
-            let code = `await lcd.print(${text.code},${column.code},${row.code},${gen.rid(block)}${gen.tar(block)})\n`
+            let code = `await lcd.print(${text.code},${column.code},${row.code},${gen.rid(block)})\n`
             gen.Import('import lcd')
             return code
         },
@@ -5948,7 +5969,7 @@ if (true) {
         },
         python: block => {
             gen.Import('import lcd')
-            return `await lcd.clear(${gen.rid(block)}${gen.tar(block)})\n`
+            return `await lcd.clear(${gen.rid(block)})\n`
         },
         javascript: block => {
             return `await stream('LCD_clear", [],${gen.rid(block)});\n`
@@ -6519,7 +6540,10 @@ if (true) {
         type: value,
         python: block => {
             gen.Import('import colour_sensor')
-            let code = `await ${gen.Symbol('colour_sensor.read_colour')}(${gen.rid(block)})`
+
+            let { mode } = gen.scrape(block)
+
+            let code = `await ${gen.Symbol('colour_sensor.read_colour')}(${gen.enum('colour_sensor', mode)}, ${gen.rid(block)})`
             return [JSON.stringify({
                 code: code,
                 precode: [],
@@ -6535,7 +6559,7 @@ if (true) {
             let { HANDLER, card, port } = gen.scrape(block)
             let object = gen.object_name('rfid', port)
             gen.Import('import rfid')
-            gen.Static(`${object}=rfid.PN532_UART(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=rfid.PN532_UART(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
             let function_name = gen.fname(block, object, 'callback')
             let function_symbol = gen.Symbol(`fn_${gen.safe(function_name.substring(1, function_name.length - 1))}`)
@@ -6574,7 +6598,7 @@ if (true) {
             let { port } = gen.scrape(block)
             let object = gen.object_name('rfid', port)
             gen.Import('import rfid')
-            gen.Static(`${object}=rfid.PN532_UART(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=rfid.PN532_UART(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
             
             let code = `await ${gen.Symbol(`${object}.read_card`)}(${gen.rid(block)})`
@@ -6593,7 +6617,7 @@ if (true) {
             let { port } = gen.scrape(block)
             let object = gen.object_name('rfid', port)
             gen.Import('import rfid')
-            gen.Static(`${object}=rfid.PN532_UART(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=rfid.PN532_UART(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
             
             let code = `await ${gen.Symbol(`${object}.is_detected`)}(${gen.rid(block)})`
@@ -6613,7 +6637,7 @@ if (true) {
             let { port } = gen.scrape(block)
             let object = gen.object_name('mp3', port)
             gen.Import('import mp3')
-            gen.Static(`${object}=mp3.DFPlayer(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=mp3.DFPlayer(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
 
             let code = `await ${gen.Symbol(`${object}.is_playing`)}(${gen.rid(block)})`
@@ -6633,7 +6657,7 @@ if (true) {
             let { port, file } = gen.scrape(block)
             let object = gen.object_name('mp3', port)
             gen.Import('import mp3')
-            gen.Static(`${object}=mp3.DFPlayer(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=mp3.DFPlayer(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
 
             let code = `await ${gen.Symbol(`${object}.play`)}(${file.code},${gen.rid(block)})\n`
@@ -6648,7 +6672,7 @@ if (true) {
             let { port, file } = gen.scrape(block)
             let object = gen.object_name('mp3', port)
             gen.Import('import mp3')
-            gen.Static(`${object}=mp3.DFPlayer(${port_map[port]}${gen.tar(block)})`)
+            gen.Static(`${object}=mp3.DFPlayer(${port_map[port]})`)
             gen.Setup(`await ${object}.begin()\n`)
 
             let code = `await ${gen.Symbol(`${object}.stop`)}(${gen.rid(block)})\n`
@@ -7839,21 +7863,38 @@ if (true) {
 
     gen.tar = (block) => {
         // Generate the target string for some of the blocks
-        if (window.optimizeGenerator) {
+        let scope = getExtenderScope(block);
+        if (scope == null) {
             return ''
         }
+
         else {
-            if (gen.grobot_ble_target == null) {
-                return ',target=None'
-            }
-            else {
-                return `,target=${gen.grobot_ble_target}`
-            }
+            // this will bet the port name ?
+            gen.Import('import extender')
+            console.log(`scoped/ detected ${block.type} inside ${scope}`);
+            return `,target=extender.of(board.${scope})`
         }
-        // return `target=${gen.grobot_ble_target || 'None'}`
+
     }
     gen.build(MakeCode)
 }
+
+
+function getExtenderScope(block) {
+    var parents = []
+    var iter = block
+    while (true) {
+        var parent = iter.getSurroundParent()
+        if (parent == null) break;
+        if (parent.type == 'grobot_extender_scoped') {
+            parents.push(parent)
+        }
+        iter = parent
+    }
+    if (parents.length == 0) return null
+    return parents[0].getFieldValue("port").split(".")[1]
+}
+
 
 
 // console.log("OK")
