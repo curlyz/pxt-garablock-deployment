@@ -4751,7 +4751,6 @@ if (true) {
     }
     makecode.input_gas_readvalue_analog = makecode.input_light_readvalue_analog
     makecode.input_flame_readvalue_analog = makecode.input_light_readvalue_analog
-    makecode.input_water_readvalue_analog = makecode.input_light_readvalue_analog
     makecode.input_light_readvalue = {
         block: ['field.port'],
         type: value,
@@ -7251,13 +7250,13 @@ if (true) {
             let text = scrape['text']
             gen.Import('import text')
             let { add0, add1, add2, add3, add4, add5 } = scrape
-            var _add0 = add0.code || 'None'
-            var _add1 = add1.code || 'None'
-            var _add2 = add2.code || 'None'
-            var _add3 = add3.code || 'None'
-            var _add4 = add4.code || 'None'
-            var _add5 = add5.code || 'None'
-            let code = `await text.text_join([${_add0.code},${_add1.code},${_add2.code},${_add3.code},${_add4.code},${_add5.code}],${gen.rid(block)})`
+            add0.code = add0.code || 'None'
+            add1.code = add1.code || 'None'
+            add2.code = add2.code || 'None'
+            add3.code = add3.code || 'None'
+            add4.code = add4.code || 'None'
+            add5.code = add5.code || 'None'
+            let code = `await text.text_join([${add0.code},${add1.code},${add2.code},${add3.code},${add4.code},${add5.code}],${gen.rid(block)})`
             return [JSON.stringify({
                 code: code, static: [], precode: []
             }), ORDER_NONE]
