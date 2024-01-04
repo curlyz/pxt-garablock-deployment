@@ -4911,44 +4911,45 @@ var pxt;
         let hasLoggedBrowser = false;
         // Note that IE11 is no longer supported in any target. Redirect handled in docfiles/pxtweb/browserRedirect.ts
         function isBrowserSupported() {
-            var _a, _b;
-            if (!navigator) {
-                return true; //All browsers define this, but we can't make any predictions if it isn't defined, so assume the best
-            }
-            // allow bots in general
-            if (/bot|crawler|spider|crawling/i.test(navigator.userAgent))
-                return true;
-            // Check target theme to see if this browser is supported
-            const unsupportedBrowsers = ((_a = pxt.appTarget) === null || _a === void 0 ? void 0 : _a.unsupportedBrowsers)
-                || ((_b = window.pxtTargetBundle) === null || _b === void 0 ? void 0 : _b.unsupportedBrowsers);
-            if (unsupportedBrowsers === null || unsupportedBrowsers === void 0 ? void 0 : unsupportedBrowsers.some(b => b.id == browser())) {
-                return false;
-            }
-            // testing browser versions
-            const versionString = browserVersion();
-            const v = parseInt(versionString || "0");
-            const isRecentChrome = isChrome() && v >= 38;
-            const isRecentFirefox = isFirefox() && v >= 31;
-            const isRecentEdge = isEdge();
-            const isRecentSafari = isSafari() && v >= 9;
-            const isRecentOpera = (isOpera() && isChrome()) && v >= 21;
-            const isModernBrowser = isRecentChrome || isRecentFirefox || isRecentEdge || isRecentSafari || isRecentOpera;
-            //In the future this should check for the availability of features, such
-            //as web workers
-            let isSupported = isModernBrowser;
-            const isUnsupportedRPI = isMidori() || (isLinux() && isARM() && isEpiphany());
-            const isNotSupported = isUnsupportedRPI;
-            isSupported = isSupported && !isNotSupported;
-            //Bypass
-            isSupported = isSupported || /anybrowser=(true|1)/.test(window.location.href);
-            if (!hasLoggedBrowser) {
-                pxt.log(`Browser: ${browser()} ${versionString} on ${os()}`);
-                if (!isSupported) {
-                    pxt.tickEvent("browser.unsupported", { useragent: navigator.userAgent });
-                }
-                hasLoggedBrowser = true;
-            }
-            return isSupported;
+            //! gb.override add support for bluefy
+            return true;
+            // if (!navigator) {
+            //     return true; //All browsers define this, but we can't make any predictions if it isn't defined, so assume the best
+            // }
+            // // allow bots in general
+            // if (/bot|crawler|spider|crawling/i.test(navigator.userAgent))
+            //     return true;
+            // // Check target theme to see if this browser is supported
+            // const unsupportedBrowsers = pxt.appTarget?.unsupportedBrowsers
+            //     || (window as any).pxtTargetBundle?.unsupportedBrowsers as BrowserOptions[];
+            // if (unsupportedBrowsers?.some(b => b.id == browser())) {
+            //     return false
+            // }
+            // // testing browser versions
+            // const versionString = browserVersion();
+            // const v = parseInt(versionString || "0")
+            // const isRecentChrome = isChrome() && v >= 38;
+            // const isRecentFirefox = isFirefox() && v >= 31;
+            // const isRecentEdge = isEdge();
+            // const isRecentSafari = isSafari() && v >= 9;
+            // const isRecentOpera = (isOpera() && isChrome()) && v >= 21;
+            // const isModernBrowser = isRecentChrome || isRecentFirefox || isRecentEdge || isRecentSafari || isRecentOpera
+            // //In the future this should check for the availability of features, such
+            // //as web workers
+            // let isSupported = isModernBrowser
+            // const isUnsupportedRPI = isMidori() || (isLinux() && isARM() && isEpiphany());
+            // const isNotSupported = isUnsupportedRPI;
+            // isSupported = isSupported && !isNotSupported
+            // //Bypass
+            // isSupported = isSupported || /anybrowser=(true|1)/.test(window.location.href)
+            // if (!hasLoggedBrowser) {
+            //     pxt.log(`Browser: ${browser()} ${versionString} on ${os()}`)
+            //     if (!isSupported) {
+            //         pxt.tickEvent("browser.unsupported", { useragent: navigator.userAgent })
+            //     }
+            //     hasLoggedBrowser = true
+            // }
+            // return isSupported
         }
         BrowserUtils.isBrowserSupported = isBrowserSupported;
         function devicePixelRatio() {
