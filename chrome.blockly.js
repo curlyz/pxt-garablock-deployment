@@ -2540,6 +2540,21 @@ if (true) {
         Value: GenerateValueCode(property)
         Action: GenerateActionCode(property)
     */
+    makecode.console_log = {
+        block: ['input.value'],
+        python: block => {
+            let { value } = gen.scrape(block)
+            return `print("console:", ${value.code})\n`
+        }
+    }
+    makecode.console_log_value = {
+        block: ['input.name', 'input.value'],
+        python: block => {
+            let { name, value } = gen.scrape(block)
+            return `print("console:", ${name.code}, "=", ${value.code})\n`
+
+        }
+    }
     makecode.controls_repeat_ext = {
         block: ['input.TIMES', 'statement.DO'],
         type: action,
@@ -7648,10 +7663,6 @@ if (true) {
                 value = `"${value}"`
             }
             return [value, ORDER_NONE]
-            let code = `${color}`
-            return [JSON.stringify({
-                code: code, static: [], precode: []
-            }), ORDER_NONE]
         }
     }
     makecode.scenescreenwidth = {
